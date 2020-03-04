@@ -20,7 +20,7 @@ namespace Task8
                 return;
             }
 
-            if (function(parsedBegin) * function(parsedEnd) >= 0)
+            if (GetFunction(parsedBegin) * GetFunction(parsedEnd) >= 0)
             {
                 Console.WriteLine("Ошибка.");
                 Console.ReadKey(true);
@@ -28,7 +28,7 @@ namespace Task8
             }
             double midSegment = (parsedBegin + parsedEnd) / 2;
 
-            if (function(midSegment) == 0)
+            if (GetFunction(midSegment) == 0)
             {
                 Console.WriteLine($"Корень: {midSegment}");
                 Console.ReadKey(true);
@@ -37,11 +37,12 @@ namespace Task8
 
             while (Math.Abs(parsedBegin) - Math.Abs(parsedEnd) > parsedEpsilon)
             {
-                if (function(parsedBegin) * function(midSegment) < 0)
+                if (GetFunction(parsedBegin) * GetFunction(midSegment) < 0)
                 {
                     parsedEnd = midSegment;                    
                 }
-                if (function(parsedEnd) * function(midSegment) < 0)
+
+                if (GetFunction(parsedEnd) * GetFunction(midSegment) < 0)
                 {
                     parsedBegin = midSegment;
                 }
@@ -50,7 +51,7 @@ namespace Task8
             Console.WriteLine($"Корень с точностью {parsedEpsilon}: {midSegment}");
         }
 
-        static double function(double x)
+        private static double GetFunction(double x)
         {
             return Math.Pow(x, 3) - 6 * x + 2;
         }
